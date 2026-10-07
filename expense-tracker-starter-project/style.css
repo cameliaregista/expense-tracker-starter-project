@@ -1,0 +1,863 @@
+/* ========================================================
+   TRACKER.IO — EXPENSE TRACKER
+   ======================================================== */
+
+/* ========================================================
+   1. ROOT / VARIABLES
+   ======================================================== */
+
+:root {
+  --bg-color: #f5f6f8;
+  --card-color: #ffffff;
+  --text-color: #111111;
+  --text-secondary: #667085;
+  --border-color: #e4e7ec;
+
+  --accent-blue: #3047c7;
+  --accent-blue-light: #eef2ff;
+
+  --income-color: #3047c7;
+  --income-bg: #eef2ff;
+
+  --expense-color: #c5364c;
+  --expense-bg: #fff0f2;
+
+  --black: #080808;
+
+  --radius-large: 24px;
+  --radius-medium: 14px;
+  --radius-small: 9px;
+
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ========================================================
+   2. RESET
+   ======================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: var(--bg-color);
+  color: var(--text-color);
+
+  line-height: 1.5;
+}
+
+
+/* ========================================================
+   3. MAIN APP
+   ======================================================== */
+
+.tracker-app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+/* ========================================================
+   4. HEADER
+   ======================================================== */
+
+.tracker-header {
+  width: 100%;
+  padding: 28px 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tracker-header__title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.tracker-header__user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tracker-header__user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tracker-header__greeting {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.tracker-header__greeting strong {
+  color: var(--text-color);
+}
+
+.tracker-header__date {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #98a2b3;
+}
+
+.tracker-header__avatar {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0f2f5;
+  border-radius: 50%;
+
+  font-size: 20px;
+}
+
+
+/* ========================================================
+   5. MAIN
+   ======================================================== */
+
+main {
+  width: 90%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+  padding: 35px 0 60px;
+}
+
+
+/* ========================================================
+   6. DASHBOARD / SUMMARY
+   ======================================================== */
+
+.tracker-summary {
+  display: grid;
+
+  grid-template-columns:
+    1.4fr
+    1fr
+    1fr;
+
+  gap: 24px;
+
+  margin-bottom: 35px;
+}
+
+.tracker-summary__balance,
+.tracker-summary__stat {
+  background: var(--card-color);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-large);
+
+  padding: 28px 32px;
+
+  box-shadow: var(--shadow);
+}
+
+.tracker-summary__balance {
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f1f5ff 100%
+    );
+}
+
+.tracker-summary__label {
+  margin-bottom: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--text-secondary);
+}
+
+.tracker-summary__balance-amount {
+  font-size: 42px;
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
+}
+
+.tracker-summary__stat-amount {
+  font-size: 30px;
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.tracker-summary__stat-amount--income {
+  color: var(--income-color);
+}
+
+.tracker-summary__stat-amount--expense {
+  color: var(--expense-color);
+}
+
+
+/* ========================================================
+   7. FORM SECTION
+   ======================================================== */
+
+.tracker-form-section {
+  margin-bottom: 35px;
+}
+
+.tracker-form-section__card {
+  background: #ffffff;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-large);
+
+  padding: 32px;
+
+  box-shadow: var(--shadow);
+}
+
+.tracker-form-section__heading {
+  margin-bottom: 25px;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  color: #667085;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* ========================================================
+   8. FORM
+   ======================================================== */
+
+.tracker-form {
+  display: grid;
+
+  grid-template-columns:
+    2fr
+    1fr
+    1fr
+    1fr
+    auto;
+
+  gap: 14px;
+
+  align-items: end;
+}
+
+.tracker-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.tracker-form__label {
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--text-color);
+}
+
+.tracker-form__input {
+  width: 100%;
+
+  min-height: 58px;
+
+  padding: 0 18px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-medium);
+
+  background: #ffffff;
+
+  color: var(--text-color);
+
+  font-family: inherit;
+  font-size: 16px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.tracker-form__input::placeholder {
+  color: #98a2b3;
+}
+
+.tracker-form__input:focus {
+  border-color: var(--accent-blue);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(48, 71, 199, 0.1);
+}
+
+
+/* ========================================================
+   9. SUBMIT BUTTON
+   ======================================================== */
+
+.tracker-form__submit {
+  min-height: 58px;
+
+  padding: 0 28px;
+
+  border: none;
+  border-radius: var(--radius-medium);
+
+  background: var(--black);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.tracker-form__submit:hover {
+  background: #292929;
+}
+
+.tracker-form__submit:active {
+  transform: scale(0.97);
+}
+
+
+/* ========================================================
+   10. SEARCH
+   ======================================================== */
+
+.tracker-search {
+  margin-bottom: 35px;
+}
+
+.tracker-search__form {
+  display: flex;
+  gap: 12px;
+
+  padding: 0;
+}
+
+.tracker-search__form .tracker-form__input {
+  flex: 1;
+}
+
+.tracker-search__submit {
+  min-width: 110px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-medium);
+
+  background: #ffffff;
+
+  color: var(--text-color);
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.tracker-search__submit:hover {
+  background: #f2f4f7;
+}
+
+.tracker-search__submit:active {
+  transform: scale(0.97);
+}
+
+
+/* ========================================================
+   11. TRANSACTION HISTORY
+   ======================================================== */
+
+.tracker-history__grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap: 35px;
+}
+
+.tracker-transaction-list {
+  background: #ffffff;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-large);
+
+  padding: 32px;
+
+  min-height: 250px;
+
+  box-shadow: var(--shadow);
+}
+
+.tracker-transaction-list__header {
+  margin-bottom: 25px;
+}
+
+.tracker-transaction-list__title {
+  font-size: 18px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  color: #667085;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* ========================================================
+   12. TRANSACTION CONTAINER
+   ======================================================== */
+
+.tracker-transaction-list__container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* ========================================================
+   13. TRANSACTION CARD
+   ======================================================== */
+
+/*
+   Card dibuat oleh JavaScript dengan:
+   .tracker-transaction-card
+*/
+
+.tracker-transaction-card {
+  width: 100%;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: var(--radius-medium);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tracker-transaction-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.06);
+
+  border-color: #d0d5dd;
+}
+
+
+/* ========================================================
+   14. TRANSACTION TITLE
+   ======================================================== */
+
+.tracker-transaction-card h4 {
+  margin-bottom: 5px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: var(--text-color);
+}
+
+
+/* ========================================================
+   15. TRANSACTION AMOUNT
+   ======================================================== */
+
+.tracker-transaction-card
+[data-testid="transaction-amount"] {
+  margin-bottom: 3px;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* ========================================================
+   16. TRANSACTION DATE
+   ======================================================== */
+
+.tracker-transaction-card
+[data-testid="transaction-date"] {
+  margin-bottom: 3px;
+
+  font-size: 14px;
+
+  color: var(--text-secondary);
+}
+
+
+/* ========================================================
+   17. TRANSACTION TYPE
+   ======================================================== */
+
+.tracker-transaction-card
+[data-testid="transaction-type"] {
+  margin-bottom: 12px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* ========================================================
+   18. TRANSACTION ACTIONS
+   ======================================================== */
+
+.transaction-actions {
+  display: flex !important;
+
+  gap: 8px !important;
+
+  margin-top: 12px !important;
+
+  flex-wrap: wrap;
+}
+
+
+/* ========================================================
+   19. ALL TRANSACTION BUTTONS
+   ======================================================== */
+
+.transaction-actions button {
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: 1px solid #e1e4e8;
+
+  border-radius: 8px;
+
+  padding: 8px 13px;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+
+/* ========================================================
+   20. EDIT BUTTON
+   ======================================================== */
+
+.transaction-actions button:nth-child(1) {
+  color: #3047c7;
+
+  border-color: #cbd5ff;
+
+  background: #f5f7ff;
+}
+
+.transaction-actions button:nth-child(1):hover {
+  background: #e8edff;
+
+  border-color: #aebcff;
+}
+
+
+/* ========================================================
+   21. DELETE BUTTON
+   ======================================================== */
+
+.transaction-actions button:nth-child(2) {
+  color: #c5364c;
+
+  border-color: #f2c5cc;
+
+  background: #fff6f7;
+}
+
+.transaction-actions button:nth-child(2):hover {
+  background: #ffe8eb;
+
+  border-color: #e99da8;
+}
+
+
+/* ========================================================
+   22. CHANGE TYPE BUTTON
+   ======================================================== */
+
+.transaction-actions button:nth-child(3) {
+  color: #475467;
+
+  border-color: #d0d5dd;
+
+  background: #f8f9fa;
+}
+
+.transaction-actions button:nth-child(3):hover {
+  background: #eaecf0;
+
+  border-color: #b8bec8;
+}
+
+
+/* ========================================================
+   23. BUTTON CLICK EFFECT
+   ======================================================== */
+
+.transaction-actions button:active {
+  transform: scale(0.96);
+}
+
+
+/* ========================================================
+   24. EMPTY STATE
+   ======================================================== */
+
+.tracker-transaction-list__container:empty::after {
+  content: "Belum ada transaksi.";
+
+  display: block;
+
+  padding: 25px 10px;
+
+  text-align: center;
+
+  color: #98a2b3;
+
+  font-size: 14px;
+}
+
+
+/* ========================================================
+   25. FOOTER
+   ======================================================== */
+
+.tracker-footer {
+  width: 100%;
+
+  padding: 30px 5%;
+
+  text-align: center;
+
+  color: #667085;
+
+  font-size: 14px;
+}
+
+
+/* ========================================================
+   26. ACCESSIBILITY
+   ======================================================== */
+
+.visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+
+  border: 0;
+}
+
+
+/* ========================================================
+   27. RESPONSIVE TABLET
+   ======================================================== */
+
+@media (max-width: 1000px) {
+
+  .tracker-form {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  .tracker-form__field:first-child {
+    grid-column: span 2;
+  }
+
+  .tracker-form__submit {
+    grid-column: span 2;
+  }
+
+  .tracker-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tracker-summary__balance {
+    grid-column: span 2;
+  }
+
+}
+
+
+/* ========================================================
+   28. RESPONSIVE MOBILE
+   ======================================================== */
+
+@media (max-width: 700px) {
+
+  .tracker-header {
+    padding: 20px;
+  }
+
+  .tracker-header__title {
+    font-size: 26px;
+  }
+
+  .tracker-header__user-info {
+    display: none;
+  }
+
+  main {
+    width: 92%;
+
+    padding-top: 25px;
+  }
+
+
+  /* Dashboard */
+
+  .tracker-summary {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .tracker-summary__balance {
+    grid-column: auto;
+  }
+
+  .tracker-summary__balance,
+  .tracker-summary__stat {
+    padding: 22px;
+  }
+
+  .tracker-summary__balance-amount {
+    font-size: 32px;
+  }
+
+
+  /* Form */
+
+  .tracker-form-section__card {
+    padding: 22px;
+  }
+
+  .tracker-form {
+    grid-template-columns: 1fr;
+  }
+
+  .tracker-form__field:first-child {
+    grid-column: auto;
+  }
+
+  .tracker-form__submit {
+    grid-column: auto;
+  }
+
+
+  /* Search */
+
+  .tracker-search__form {
+    flex-direction: column;
+  }
+
+  .tracker-search__submit {
+    min-height: 52px;
+  }
+
+
+  /* History */
+
+  .tracker-history__grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .tracker-transaction-list {
+    padding: 22px;
+  }
+
+
+  /* Buttons */
+
+  .transaction-actions {
+    width: 100%;
+  }
+
+  .transaction-actions button {
+    flex: 1;
+
+    min-height: 38px;
+  }
+
+}
